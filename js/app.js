@@ -3,6 +3,9 @@ var Enemy = function() {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
+  //x position
+  //y position
+
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
@@ -15,6 +18,11 @@ Enemy.prototype.update = function(dt) {
   // which will ensure the game runs at the same speed for
   // all computers.
 
+  //if enemy has not passed right boundary
+  //move forward-increment x by dt * speed
+  //else
+  //reset position to left boundary
+
 
 };
 
@@ -26,6 +34,35 @@ Enemy.prototype.render = function() {
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
+
+// Player class
+
+//CONSTRUCTOR
+
+//PROPERTIES
+//x pos
+//y pos
+//sprite
+
+//METHODS
+//update position
+//check for collision
+//do player's x/y match enemy?
+//check win
+//do player's x/y reach top?
+
+//render
+//draw player at current x/y pos
+
+//handle keyboard input
+//update player x/y pos from input
+
+//reset Player
+//set x/y to start position
+
+
+
+
 var Player = function() {
   this.sprite = 'images/char-boy.png';
 };
@@ -41,8 +78,16 @@ Player.prototype.render = function() {
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
-var allEnemies = [Enemy];
-var player = Player;
+
+// my orig code
+// var allEnemies = [Enemy];
+// var player = Player;
+
+//new Player object
+
+//init allEnemies array
+//for each enemy create and push new Enemy object to allEnemies array
+
 
 
 // This listens for key presses and sends the keys to your
