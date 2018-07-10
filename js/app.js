@@ -35,7 +35,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 
-// Player class
+// Player1 class
 
 //CONSTRUCTOR
 
@@ -60,28 +60,40 @@ Enemy.prototype.render = function() {
 //reset Player
 //set x/y to start position
 
+class Player1 {
+  constructor() {
+    this.x = 0;
+    this.y = 0;
+    this.sprite = 'images/char-boy.png';
+  }
+  render() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  }
+}
 
+const player = new Player1();
 
-
-var Player = function() {
-  this.sprite = 'images/char-boy.png';
-};
-
-Player.prototype.update = function(dt) {
-
-};
-
-Player.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+//more original code
+// var Player = function() {
+//   this.sprite = 'images/char-boy.png';
+// };
+//
+// Player.prototype.update = function(dt) {
+//
+// };
+//
+// Player.prototype.render = function() {
+//   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+// };
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
 // my orig code
-// var allEnemies = [Enemy];
+// var allEnemies = [];
 // var player = Player;
+
 
 //new Player object
 
