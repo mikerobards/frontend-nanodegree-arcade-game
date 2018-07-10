@@ -60,15 +60,40 @@ Enemy.prototype.render = function() {
 //reset Player
 //set x/y to start position
 
+const colSet = 101;
+const rowSet = 83;
+
 class Player1 {
   constructor() {
     this.x = 0;
     this.y = 0;
     this.sprite = 'images/char-boy.png';
   }
+
+  handleInput(input) {
+    switch (input) {
+      case 'left':
+        this.x = this.x > 0 ? this.x - colSet : this.x;
+        break;
+      case 'up':
+        this.y = this.y > 0 ? this.y - rowSet : this.y;
+        break;
+      case 'right':
+        this.x = this.x < 404 ? this.x + colSet : this.x;
+        break;
+      case 'down':
+        this.y = this.y < 400 ? this.y + rowSet : this.y;
+        break;
+      default:
+        break;
+
+    }
+  }
+
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   }
+
 }
 
 const player = new Player1();
