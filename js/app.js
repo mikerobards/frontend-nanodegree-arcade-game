@@ -1,3 +1,6 @@
+const colSet = 101;
+const rowSet = 83;
+
 // Enemies our player must avoid
 var Enemy = function() {
   // Variables applied to each of our instances go here,
@@ -5,6 +8,8 @@ var Enemy = function() {
 
   //x position
   //y position
+  this.x = 0;
+  this.y = 63;
 
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
@@ -60,13 +65,10 @@ Enemy.prototype.render = function() {
 //reset Player
 //set x/y to start position
 
-const colSet = 101;
-const rowSet = 83;
+
 
 class Player1 {
   constructor() {
-    // this.x = 0;
-    // this.y = 0;
     this.sprite = 'images/char-boy.png';
     this.homeX = rowSet * 2.4;
     this.homeY = colSet * 4;
@@ -121,16 +123,17 @@ const player = new Player1();
 // Place the player object in a variable called player
 
 // my orig code
-// var allEnemies = [];
-// var player = Player;
+var allEnemies = [];
+
 
 
 //new Player object
 
 //init allEnemies array
 //for each enemy create and push new Enemy object to allEnemies array
+const enemy = new Enemy();
 
-
+allEnemies.push(enemy);
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
