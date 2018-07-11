@@ -65,9 +65,13 @@ const rowSet = 83;
 
 class Player1 {
   constructor() {
-    this.x = 0;
-    this.y = 0;
+    // this.x = 0;
+    // this.y = 0;
     this.sprite = 'images/char-boy.png';
+    this.homeX = rowSet * 2.4;
+    this.homeY = colSet * 4;
+    this.x = this.homeX;
+    this.y = this.homeY;
   }
 
   handleInput(input) {
@@ -79,7 +83,7 @@ class Player1 {
         this.y = this.y > 0 ? this.y - rowSet : this.y;
         break;
       case 'right':
-        this.x = this.x < 404 ? this.x + colSet : this.x;
+        this.x = this.x < 400 ? this.x + colSet : this.x;
         break;
       case 'down':
         this.y = this.y < 400 ? this.y + rowSet : this.y;
@@ -92,6 +96,7 @@ class Player1 {
 
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
   }
 
 }
