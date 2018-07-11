@@ -2,33 +2,37 @@ const colSet = 101;
 const rowSet = 83;
 
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x, y, speed) {
   // Variables applied to each of our instances go here,
   // we've provided one for you to get started
 
   //x position
   //y position
+
+  this.speed = speed;
   this.x = 0;
   this.y = 63;
 
   // The image/sprite for our enemies, this uses
   // a helper we've provided to easily load images
   this.sprite = 'images/enemy-bug.png';
-};
-
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-  // You should multiply any movement by the dt parameter
-  // which will ensure the game runs at the same speed for
-  // all computers.
-
-  //if enemy has not passed right boundary
-  //move forward-increment x by dt * speed
-  //else
-  //reset position to left boundary
 
 
+
+  // Update the enemy's position, required method for game
+  // Parameter: dt, a time delta between ticks
+  Enemy.prototype.update = function(dt) {
+    // this.x += this.speed * dt;
+    // You should multiply any movement by the dt parameter
+    // which will ensure the game runs at the same speed for
+    // all computers.
+
+    //if enemy has not passed right boundary
+    //move forward-increment x by dt * speed
+    //else
+    //reset position to left boundary
+
+  };
 };
 
 // Draw the enemy on the screen, required method for game
@@ -131,7 +135,7 @@ var allEnemies = [];
 
 //init allEnemies array
 //for each enemy create and push new Enemy object to allEnemies array
-const enemy = new Enemy();
+let enemy = new Enemy();
 
 allEnemies.push(enemy);
 
