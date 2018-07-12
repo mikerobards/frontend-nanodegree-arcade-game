@@ -22,7 +22,7 @@ var Enemy = function() {
   // Update the enemy's position, required method for game
   // Parameter: dt, a time delta between ticks
   Enemy.prototype.update = function(dt) {
-    this.speed = 100;
+    this.speed = 200;
     this.x += this.speed * dt;
     if (this.x > 400) {
       this.x = 0;
@@ -40,9 +40,12 @@ var Enemy = function() {
 };
 
 // Draw the enemy on the screen, required method for game
+
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
+
+
 
 // Now write your own player class
 // This class requires an update(), render() and
@@ -139,9 +142,11 @@ var allEnemies = [];
 
 //init allEnemies array
 //for each enemy create and push new Enemy object to allEnemies array
-let enemy = new Enemy();
-
-allEnemies.push(enemy);
+for (let i = 1; i < 4; i++) {
+  let enemy = new Enemy();
+  enemy.y = (i * 83) - 20;
+  allEnemies.push(enemy);
+}
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
