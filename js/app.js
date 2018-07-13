@@ -22,7 +22,6 @@ var Enemy = function() {
   // Update the enemy's position, required method for game
   // Parameter: dt, a time delta between ticks
   Enemy.prototype.update = function(dt) {
-    this.speed = 200;
     this.x += this.speed * dt;
     if (this.x > 400) {
       this.x = 0;
@@ -142,10 +141,16 @@ var allEnemies = [];
 
 //init allEnemies array
 //for each enemy create and push new Enemy object to allEnemies array
-for (let i = 1; i < 4; i++) {
-  let enemy = new Enemy();
-  enemy.y = (i * 83) - 20;
-  allEnemies.push(enemy);
+
+for (let i = 1; i <= 2; i++) {
+
+  for (let j = 1; j <= 3; j++) {
+    let enemy = new Enemy();
+    enemy.speed = Math.floor(Math.random() * 200) + 20;
+
+    enemy.y = (j * 83) - 20;
+    allEnemies.push(enemy);
+  }
 }
 
 // This listens for key presses and sends the keys to your
