@@ -8,7 +8,7 @@ class Enemy {
     this.x = 0;
     this.y = 63;
     this.sprite = 'images/enemy-bug.png';
-    this.speed = 5;
+    this.speed = 200;
   };
 };
 
@@ -24,10 +24,21 @@ Enemy.prototype.update = function(dt) {
 
 
 
-  //   if ((this.x === player.x) && (this.y === player.y)) {
-  //     player.x = rowSet * 2.4;
-  //     player.y = colSet * 4;
-  //   }
+  //check for collision
+  if (this.y === (player.y - 9)) {
+    if ((Math.round(this.x) >= Math.round(player.x) - 70) &&
+      (Math.round(this.x) <= Math.round(player.x) + 70)) {
+
+      player.x = player.homeX;
+      player.y = player.homeY;
+    }
+  };
+
+
+  // display xy
+  console.log(Math.round(this.x), Math.round(this.y));
+  console.log('playerx' + Math.round(player.x), 'playery' + (player.y - 9));
+
 };
 
 // Render enemy
@@ -79,19 +90,10 @@ class Player1 {
     };
   };
   render() {
-    if (enemy.y === (this.y - 9)) {
-      if ((Math.round(enemy.x) >= Math.round(this.x) - 75) &&
-        (Math.round(enemy.x) <= Math.round(this.x) + 75)) {
 
-        this.x = this.homeX;
-        this.y = this.homeY;
-      }
-    };
+
+
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
-    console.log(Math.round(enemy.x), Math.round(enemy.y));
-    // console.log('player' + Math.round(this.x), 'player' + this.y);
-    console.log('playerx' + Math.round(this.x), 'playery' + (this.y - 9));
 
 
 
@@ -104,17 +106,14 @@ const allEnemies = [];
 const enemy = new Enemy();
 allEnemies.push(enemy);
 
-
-
-
-// for (let i = 1; i <= 2; i++) {
-//   for (let j = 1; j <= 3; j++) {
-//     const enemy = new Enemy();
-//     enemy.square = Math.floor(Math.random() * 200) + 20;
-//     enemy.y = (j * 83) - 20;
-//     allEnemies.push(enemy);
-//   }
-// };
+for (let i = 1; i <= 2; i++) {
+  for (let j = 1; j <= 3; j++) {
+    const enemy = new Enemy();
+    enemy.speed = Math.floor(Math.random() * 200) + 20;
+    enemy.y = (j * 83) - 20;
+    allEnemies.push(enemy);
+  }
+};
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
