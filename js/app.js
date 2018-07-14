@@ -3,40 +3,32 @@ const rowSet = 83;
 
 // Enemies our player must avoid
 var Enemy = function() {
-  // Variables applied to each of our instances go here,
-  // we've provided one for you to get started
-
-  //x position
-  //y position
-
-
   this.x = 0;
-  this.y = 63;
-
-  // The image/sprite for our enemies, this uses
-  // a helper we've provided to easily load images
+  this.y = 0;
   this.sprite = 'images/enemy-bug.png';
-
-
-
-  // Update the enemy's position, required method for game
-  // Parameter: dt, a time delta between ticks
-  Enemy.prototype.update = function(dt) {
-    this.x += this.speed * dt;
-    if (this.x > 400) {
-      this.x = 0;
-    }
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-
-    //if enemy has not passed right boundary
-    //move forward-increment x by dt * speed
-    //else
-    //reset position to left boundary
-
-  };
+  this.square = 101;
+  this.edgeEnd = this.square * 5;
 };
+
+// Update the enemy's position, required method for game
+// Parameter: dt, a time delta between ticks
+Enemy.prototype.update = function(dt) {
+  if (this.x < this.edgeEnd) {
+    this.x += 200 * dt;
+  } else {
+    this.x = -101;
+  } // this.x += this.speed * dt;
+  // if (this.x > 400) {
+  //   this.x = 0;
+};
+// You should multiply any movement by the dt parameter
+// which will ensure the game runs at the same speed for
+// all computers.
+
+//if enemy has not passed right boundary
+//move forward-increment x by dt * speed
+//else
+//reset position to left boundary
 
 // Draw the enemy on the screen, required method for game
 
@@ -132,8 +124,9 @@ const player = new Player1();
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
-// my orig code
-var allEnemies = [];
+const enemy1 = new Enemy();
+const allEnemies = [];
+allEnemies.push(enemy1);
 
 
 
@@ -142,16 +135,16 @@ var allEnemies = [];
 //init allEnemies array
 //for each enemy create and push new Enemy object to allEnemies array
 
-for (let i = 1; i <= 2; i++) {
-
-  for (let j = 1; j <= 3; j++) {
-    let enemy = new Enemy();
-    enemy.speed = Math.floor(Math.random() * 200) + 20;
-
-    enemy.y = (j * 83) - 20;
-    allEnemies.push(enemy);
-  }
-}
+// for (let i = 1; i <= 2; i++) {
+//
+//   for (let j = 1; j <= 3; j++) {
+//     let enemy = new Enemy();
+//     enemy.speed = Math.floor(Math.random() * 200) + 20;
+//
+//     enemy.y = (j * 83) - 20;
+//     allEnemies.push(enemy);
+//   }
+// }
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
