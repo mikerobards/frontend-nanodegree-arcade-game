@@ -1,55 +1,42 @@
+// variables for player movement around board
 const colSet = 101;
 const rowSet = 83;
 
-// Enemies our player must avoid
-var Enemy = function() {
-  this.x = 0;
-  this.y = 0;
-  this.sprite = 'images/enemy-bug.png';
-  this.square = 101;
-  this.edgeEnd = this.square * 5;
+// Enemy class
+class Enemy {
+  constructor() {
+    this.x = 0;
+    this.y = 63;
+    this.sprite = 'images/enemy-bug.png';
+    this.speed = 5;
+  };
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 Enemy.prototype.update = function(dt) {
-  if (this.x < this.edgeEnd) {
-    this.x += 200 * dt;
+  if (this.x < 500) {
+    this.x += this.speed * dt;
   } else {
     this.x = -101;
-  } // this.x += this.speed * dt;
-  // if (this.x > 400) {
-  //   this.x = 0;
+  };
+
+
+
+
+  //   if ((this.x === player.x) && (this.y === player.y)) {
+  //     player.x = rowSet * 2.4;
+  //     player.y = colSet * 4;
+  //   }
 };
-// You should multiply any movement by the dt parameter
-// which will ensure the game runs at the same speed for
-// all computers.
 
-//if enemy has not passed right boundary
-//move forward-increment x by dt * speed
-//else
-//reset position to left boundary
-
-// Draw the enemy on the screen, required method for game
+// Render enemy
 
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+
 };
 
-
-
-// Now write your own player class
-// This class requires an update(), render() and
-// a handleInput() method.
-
-// Player1 class
-
-//CONSTRUCTOR
-
-//PROPERTIES
-//x pos
-//y pos
-//sprite
 
 //METHODS
 //update position
@@ -58,17 +45,10 @@ Enemy.prototype.render = function() {
 //check win
 //do player's x/y reach top?
 
-//render
-//draw player at current x/y pos
-
-//handle keyboard input
-//update player x/y pos from input
-
 //reset Player
 //set x/y to start position
 
-
-
+// Player class
 class Player1 {
   constructor() {
     this.sprite = 'images/char-boy.png';
@@ -76,8 +56,10 @@ class Player1 {
     this.homeY = colSet * 4;
     this.x = this.homeX;
     this.y = this.homeY;
-  }
 
+  };
+
+  // move player
   handleInput(input) {
     switch (input) {
       case 'left':
@@ -94,57 +76,45 @@ class Player1 {
         break;
       default:
         break;
-
-    }
-  }
-
+    };
+  };
   render() {
+    if (enemy.y === (this.y - 9)) {
+      if ((Math.round(enemy.x) >= Math.round(this.x) - 75) &&
+        (Math.round(enemy.x) <= Math.round(this.x) + 75)) {
+
+        this.x = this.homeX;
+        this.y = this.homeY;
+      }
+    };
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
-  }
+    console.log(Math.round(enemy.x), Math.round(enemy.y));
+    // console.log('player' + Math.round(this.x), 'player' + this.y);
+    console.log('playerx' + Math.round(this.x), 'playery' + (this.y - 9));
 
-}
+
+
+  };
+};
 
 const player = new Player1();
 
-//more original code
-// var Player = function() {
-//   this.sprite = 'images/char-boy.png';
-// };
-//
-// Player.prototype.update = function(dt) {
-//
-// };
-//
-// Player.prototype.render = function() {
-//   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-// };
-
-// Now instantiate your objects.
-// Place all enemy objects in an array called allEnemies
-// Place the player object in a variable called player
-
-const enemy1 = new Enemy();
 const allEnemies = [];
-allEnemies.push(enemy1);
+const enemy = new Enemy();
+allEnemies.push(enemy);
 
 
 
-//new Player object
-
-//init allEnemies array
-//for each enemy create and push new Enemy object to allEnemies array
 
 // for (let i = 1; i <= 2; i++) {
-//
 //   for (let j = 1; j <= 3; j++) {
-//     let enemy = new Enemy();
-//     enemy.speed = Math.floor(Math.random() * 200) + 20;
-//
+//     const enemy = new Enemy();
+//     enemy.square = Math.floor(Math.random() * 200) + 20;
 //     enemy.y = (j * 83) - 20;
 //     allEnemies.push(enemy);
 //   }
-// }
+// };
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
