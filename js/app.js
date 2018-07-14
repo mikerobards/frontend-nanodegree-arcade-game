@@ -2,6 +2,7 @@
 const colSet = 101;
 const rowSet = 83;
 
+
 // Enemy class
 class Enemy {
   constructor() {
@@ -31,6 +32,7 @@ Enemy.prototype.update = function(dt) {
 
       player.x = player.homeX;
       player.y = player.homeY;
+      resetGame();
     }
   };
 
@@ -46,6 +48,13 @@ Enemy.prototype.update = function(dt) {
 Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
+};
+
+function resetGame() {
+  player.x = player.homeX;
+  player.y = player.homeY;
+  allEnemies = [];
+  createEnemies();
 };
 
 
@@ -101,18 +110,22 @@ class Player1 {
 };
 
 const player = new Player1();
+let allEnemies = [];
+createEnemies();
 
-const allEnemies = [];
-const enemy = new Enemy();
-allEnemies.push(enemy);
+function createEnemies() {
 
-for (let i = 1; i <= 2; i++) {
-  for (let j = 1; j <= 3; j++) {
-    const enemy = new Enemy();
-    enemy.speed = Math.floor(Math.random() * 200) + 20;
-    enemy.y = (j * 83) - 20;
-    allEnemies.push(enemy);
-  }
+  const enemy = new Enemy();
+  allEnemies.push(enemy);
+
+  for (let i = 1; i <= 2; i++) {
+    for (let j = 1; j <= 3; j++) {
+      const enemy = new Enemy();
+      enemy.speed = Math.floor(Math.random() * 200) + 20;
+      enemy.y = (j * 83) - 20;
+      allEnemies.push(enemy);
+    }
+  };
 };
 
 // This listens for key presses and sends the keys to your
