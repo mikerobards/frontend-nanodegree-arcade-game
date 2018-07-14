@@ -1,7 +1,6 @@
-// variables for player movement around board
+// constants for player movement around board
 const colSet = 101;
 const rowSet = 83;
-
 
 // Enemy class
 class Enemy {
@@ -11,48 +10,36 @@ class Enemy {
     this.sprite = 'images/enemy-bug.png';
     this.speed = 200;
   };
-};
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-Enemy.prototype.update = function(dt) {
-  if (this.x < 500) {
-    this.x += this.speed * dt;
-  } else {
-    this.x = -101;
+  // Update the enemy's position, required method for game
+  // Parameter: dt, a time delta between ticks
+  update(dt) {
+    if (this.x < 500) {
+      this.x += this.speed * dt;
+    } else {
+      this.x = -101;
+    };
+
+    //check for collision
+    if (this.y === (player.y - 9)) {
+      if ((Math.round(this.x) >= Math.round(player.x) - 70) &&
+        (Math.round(this.x) <= Math.round(player.x) + 70)) {
+
+        player.x = player.homeX;
+        player.y = player.homeY;
+        resetGame();
+      }
+    };
+
+    if (player.y < -10) {
+      winGame();
+    };
   };
 
-
-
-
-  //check for collision
-  if (this.y === (player.y - 9)) {
-    if ((Math.round(this.x) >= Math.round(player.x) - 70) &&
-      (Math.round(this.x) <= Math.round(player.x) + 70)) {
-
-      player.x = player.homeX;
-      player.y = player.homeY;
-      resetGame();
-    }
+  // Render enemy
+  render() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   };
-
-  if (player.y < -10) {
-    winGame();
-  };
-
-
-
-  // display xy
-  // console.log(Math.round(this.x), Math.round(this.y));
-  console.log(player.y);
-
-};
-
-// Render enemy
-
-Enemy.prototype.render = function() {
-  ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
 };
 
 // Player class
@@ -85,7 +72,20 @@ class Player1 {
         break;
     };
   };
+  // render player
+  render() {
+    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+  };
+};
 
+// heart class
+class Heart {
+  constructor() {
+    this.sprite = 'images/Heart.png';
+    this.x = -100;
+    this.y = -100;
+    // this.speed = 500;
+  };
   render() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
   };
@@ -93,13 +93,12 @@ class Player1 {
 
 // create new instance of player and enemies
 const player = new Player1();
+const heart = new Heart();
 let allEnemies = [];
 createEnemies();
 
 // create enemies function
 function createEnemies() {
-  const enemy = new Enemy();
-  allEnemies.push(enemy);
   for (let i = 1; i <= 2; i++) {
     for (let j = 1; j <= 3; j++) {
       const enemy = new Enemy();
@@ -109,13 +108,20 @@ function createEnemies() {
     }
   };
 };
-// reset game function
 
+// reset game function
 function resetGame() {
   player.x = player.homeX;
   player.y = player.homeY;
   allEnemies = [];
   createEnemies();
+};
+
+// Game win!
+function winGame() {
+  allEnemies = [];
+  heart.x = 200;
+  heart.y = 250;
 };
 
 // This listens for key presses and sends the keys to your
