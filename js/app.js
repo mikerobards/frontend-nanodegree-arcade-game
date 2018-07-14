@@ -36,10 +36,15 @@ Enemy.prototype.update = function(dt) {
     }
   };
 
+  if (player.y < -10) {
+    winGame();
+  };
+
+
 
   // display xy
-  console.log(Math.round(this.x), Math.round(this.y));
-  console.log('playerx' + Math.round(player.x), 'playery' + (player.y - 9));
+  // console.log(Math.round(this.x), Math.round(this.y));
+  console.log(player.y);
 
 };
 
@@ -49,24 +54,6 @@ Enemy.prototype.render = function() {
   ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 
 };
-
-function resetGame() {
-  player.x = player.homeX;
-  player.y = player.homeY;
-  allEnemies = [];
-  createEnemies();
-};
-
-
-//METHODS
-//update position
-//check for collision
-//do player's x/y match enemy?
-//check win
-//do player's x/y reach top?
-
-//reset Player
-//set x/y to start position
 
 // Player class
 class Player1 {
@@ -98,26 +85,21 @@ class Player1 {
         break;
     };
   };
+
   render() {
-
-
-
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-
-
-
   };
 };
 
+// create new instance of player and enemies
 const player = new Player1();
 let allEnemies = [];
 createEnemies();
 
+// create enemies function
 function createEnemies() {
-
   const enemy = new Enemy();
   allEnemies.push(enemy);
-
   for (let i = 1; i <= 2; i++) {
     for (let j = 1; j <= 3; j++) {
       const enemy = new Enemy();
@@ -126,6 +108,14 @@ function createEnemies() {
       allEnemies.push(enemy);
     }
   };
+};
+// reset game function
+
+function resetGame() {
+  player.x = player.homeX;
+  player.y = player.homeY;
+  allEnemies = [];
+  createEnemies();
 };
 
 // This listens for key presses and sends the keys to your
