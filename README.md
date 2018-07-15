@@ -1,11 +1,11 @@
 # frontend-nanodegree-arcade-game
 
-## how to load the game
+## How to load the game
 
 Click on this link:
 [Arcade Clone!](https://mikerobards.github.io/frontend-nanodegree-arcade-game/)
 
-## instructions
+## Instructions
 
 The game starts automatically. Move the player around the board using the arrow keys.
 Your goal is to reach the water at the top of the screen.
