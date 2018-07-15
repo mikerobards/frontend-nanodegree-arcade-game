@@ -3,7 +3,7 @@
 ## how to load the game
 
 click on this link:
-[Arcade Clone!](<>)
+[Arcade Clone!](https://mikerobards.github.io/frontend-nanodegree-arcade-game/)
 
 ## instructions
 
